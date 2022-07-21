@@ -1,0 +1,36 @@
+$text-color: #1B2125;
+$text-color-muted: #788995;
+$color-main: #0077E2;
+$color-main-muted: #e64a19;
+$color-main-active: #bf360c;
+$color-disabled: #F8FAFB;
+$color-error: #f44336;
+$color-sucess: #00796b;
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == screen-xxl {
+    @media (min-width: 1460px) {
+      @content;
+    }
+  }
+  @if $breakpoint == screen-xl {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+  @if $breakpoint == screen-lg {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+  @if $breakpoint == screen-md {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == screen-sm {
+    @media (min-width: 576px) {
+      @content;
+    }
+  }
+}
