@@ -7,7 +7,14 @@
       </main>
       <div class="page-box__slot">
         <h3 class="sub-title">Товары</h3>
-        <product-card />
+        <product-card
+          v-for="product in products"
+          v-bind="product"
+          @increase="productQuantity"
+          @reduce="productQuantity"
+          @remove="productRemove"
+          :key="product.id"
+        />
       </div>
       <aside class="page-box__assaide">
         <shopping-cart />
@@ -30,7 +37,40 @@ export default {
     ProductCard,
   },
   data() {
-    return {};
+    return {
+      products: [
+        {
+          id: 1,
+          name: "Рюкзак Xiaomi Blade, серый",
+          image: require("@img/temp/product-1.png"),
+          color: "Серый",
+          article: "123456789",
+          quantity: 2,
+          priceNew: 2900,
+          priceOld: 4700,
+        },
+        {
+          id: 2,
+          name: "Ботинки для беговых лыж Marax M-350 Active серебро",
+          image: require("@img/temp/product-2.png"),
+          color: "Серебро",
+          article: "123456789",
+          quantity: 1,
+          priceNew: 1620,
+          priceOld: 1950,
+        },
+      ],
+    };
+  },
+  methods: {
+    productQuantity(id, num) {
+      const product = this.products.find((item) => item.id === id);
+      product.quantity = num;
+    },
+    productRemove(id) {
+      const index = this.products.findIndex((item) => item.id === id);
+      this.products.splice(index, 1);
+    },
   },
 };
 </script>
@@ -49,7 +89,12 @@ export default {
     @include respond(screen-lg) {
       grid-column: span 2;
       grid-row: 2 / 2;
+      max-width: 754px;
     }
   }
+}
+
+.product-card {
+  margin-top: -1px;
 }
 </style>

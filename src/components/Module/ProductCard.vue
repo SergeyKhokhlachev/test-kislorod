@@ -1,36 +1,49 @@
 <template>
   <div class="product-card">
     <div class="product-card__previw">
-      <img
-        src="@img/temp/product-1.png"
-        class="product-card__img"
-        alt="photo"
-      />
+      <img :src="image" class="product-card__img" alt="photo" />
     </div>
     <div class="product-card__content">
       <router-link to="/" class="product-card__name">
-        Ботинки для беговых лыж Marax M-350 Active серебро
+        {{ name }}
       </router-link>
       <ul class="product-info">
-        <li class="product-info__ell">Артикул: <span>123456789</span></li>
-        <li class="product-info__ell">Цвет: <span>Серебро</span></li>
+        <li class="product-info__ell">
+          Артикул: <span>{{ article }}</span>
+        </li>
+        <li class="product-info__ell">
+          Цвет: <span>{{ color }}</span>
+        </li>
       </ul>
     </div>
     <div class="product-card__control">
       <div class="product-price">
-        <sapn class="product-price__main">2 900 руб.</sapn>
-        <span class="product-price__sub">4 700 руб.</span>
+        <span class="product-price__main">{{ priceNewFormat }}</span>
+        <span class="product-price__sub">{{ priceOldFormat }}</span>
       </div>
       <div class="product-count">
-        <div class="product-count__btn">
+        <button
+          type="button"
+          class="product-count__btn"
+          @click="reduce"
+          :disabled="disabled"
+        >
           <img svg-inline src="@img/icons/minus.svg" alt="-" />
-        </div>
-        <input type="text" class="product-count__field" readonly />
-        <div class="product-count__btn">
+        </button>
+        <input
+          type="text"
+          class="product-count__field"
+          :value="quantity"
+          readonly
+        />
+        <span v-if="!disabled" class="product-count__single">
+          {{ priceSingleFormat }}
+        </span>
+        <button type="button" class="product-count__btn" @click="increase">
           <img svg-inline src="@img/icons/plus.svg" alt="+" />
-        </div>
+        </button>
       </div>
-      <button type="button" class="product-card__remove">
+      <button type="button" class="product-card__remove" @click="remove">
         <img svg-inline src="@img/icons/close.svg" alt="x" />
       </button>
     </div>
@@ -40,8 +53,49 @@
 <script>
 export default {
   name: "ProductCard",
-  data() {
-    return {};
+  props: {
+    id: [String, Number],
+    name: String,
+    image: String,
+    color: String,
+    article: String,
+    quantity: {
+      type: Number,
+      default: 1,
+    },
+    priceNew: {
+      type: Number,
+      default: 0,
+    },
+    priceOld: {
+      type: Number,
+      default: 0,
+    },
+  },
+  computed: {
+    disabled() {
+      return this.quantity <= 1;
+    },
+    priceNewFormat() {
+      return `${this.priceNew * this.quantity} руб.`;
+    },
+    priceOldFormat() {
+      return `${this.priceOld * this.quantity} руб.`;
+    },
+    priceSingleFormat() {
+      return `${this.priceNew} руб./шт.`;
+    },
+  },
+  methods: {
+    increase() {
+      this.$emit("increase", this.id, this.quantity + 1);
+    },
+    reduce() {
+      this.$emit("reduce", this.id, this.quantity - 1);
+    },
+    remove() {
+      this.$emit("remove", this.id);
+    },
   },
 };
 </script>
@@ -67,14 +121,131 @@ export default {
     width: 100%;
   }
   &__name {
+    display: inline-block;
+    max-width: 250px;
+    margin-bottom: 10px;
+    font-size: 16px;
   }
   &__control {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-shrink: 0;
+    .product-count {
+      margin-right: 60px;
+      margin-left: 40px;
+    }
   }
   &__remove {
+    padding: 4px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    &:active,
+    &:focus {
+      outline: none;
+    }
+    svg {
+      fill: $text-color;
+      transition: fill 0.2s ease-in-out;
+    }
+    @include hover-supported() {
+      svg {
+        fill: $color-error;
+      }
+    }
+    &:active {
+      svg {
+        fill: $color-error;
+      }
+    }
+  }
+}
+
+.product-info {
+  &__ell {
+    mix-blend-mode: 6px;
+    color: $text-color--muted;
+    font-size: 13px;
+    span {
+      color: $text-color;
+    }
+  }
+}
+
+.product-price {
+  display: flex;
+  flex-direction: column;
+  &__main {
+    font-size: 16px;
+  }
+  &__sub {
+    color: $text-color--muted;
+    font-size: 13px;
+    text-decoration: line-through;
+  }
+}
+
+.product-count {
+  position: relative;
+  display: flex;
+  margin-bottom: 16px;
+  border: 1px solid #dde3e8;
+  border-radius: 3px;
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: #f8fafb;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    svg {
+      transition: opacity 0.2s ease-in-out;
+    }
+    &:active,
+    &:focus {
+      outline: none;
+    }
+    @include hover-supported() {
+      background-color: #ededed;
+    }
+    &:active {
+      background-color: #d6d6d6;
+    }
+    &[disabled] {
+      background-color: $color-disabled;
+      cursor: default;
+      svg {
+        opacity: 0.2;
+      }
+    }
+  }
+  &__field {
+    width: 38px;
+    height: 35px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #dde3e8;
+    border-right: 1px solid #dde3e8;
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+  &__single {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    display: inline-block;
+    width: 100%;
+    margin-top: 4px;
+    color: $text-color--muted;
+    font-size: 12px;
+    text-align: center;
   }
 }
 </style>
