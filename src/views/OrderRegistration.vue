@@ -82,7 +82,7 @@ export default {
     display: grid;
     grid-auto-rows: 1fr;
     grid-template-columns: auto 460px;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: 30px;
   }
   &__slot {

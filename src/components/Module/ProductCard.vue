@@ -77,16 +77,19 @@ export default {
       return this.quantity <= 1;
     },
     priceNewFormat() {
-      return `${this.priceNew * this.quantity} руб.`;
+      return `${this.priceFormat(this.priceNew * this.quantity)} руб.`;
     },
     priceOldFormat() {
-      return `${this.priceOld * this.quantity} руб.`;
+      return `${this.priceFormat(this.priceOld * this.quantity)} руб.`;
     },
     priceSingleFormat() {
-      return `${this.priceNew} руб./шт.`;
+      return `${this.priceFormat(this.priceNew)} руб./шт.`;
     },
   },
   methods: {
+    priceFormat(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    },
     increase() {
       this.$emit("increase", this.id, this.quantity + 1);
     },

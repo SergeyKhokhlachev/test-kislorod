@@ -21,7 +21,9 @@ export default {
   },
   computed: {
     priceFormat() {
-      return `${this.price} руб.`;
+      return `${this.price
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, " ")} руб.`;
     },
   },
 };
