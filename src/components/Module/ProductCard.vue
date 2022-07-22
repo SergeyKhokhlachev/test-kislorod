@@ -26,7 +26,7 @@
           type="button"
           class="product-count__btn"
           @click="reduce"
-          :disabled="disabled"
+          :disabled="single"
         >
           <img svg-inline src="@img/icons/minus.svg" alt="-" />
         </button>
@@ -36,7 +36,7 @@
           :value="quantity"
           readonly
         />
-        <span v-if="!disabled" class="product-count__single">
+        <span v-if="!single" class="product-count__single">
           {{ priceSingleFormat }}
         </span>
         <button type="button" class="product-count__btn" @click="increase">
@@ -73,7 +73,7 @@ export default {
     },
   },
   computed: {
-    disabled() {
+    single() {
       return this.quantity <= 1;
     },
     priceNewFormat() {

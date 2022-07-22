@@ -81,7 +81,7 @@ export default {
   @include respond(screen-lg) {
     display: grid;
     grid-auto-rows: 1fr;
-    grid-template-columns: auto 300px;
+    grid-template-columns: auto 460px;
     grid-template-rows: repeat(2, 1fr);
     gap: 30px;
   }
