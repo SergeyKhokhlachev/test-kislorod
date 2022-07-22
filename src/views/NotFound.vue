@@ -3,7 +3,7 @@
     <div class="page-not-found__content">
       <h1>404</h1>
       <p>Страница не найдена</p>
-      <router-link to="/" class="link">Перейти на главную?</router-link>
+      <router-link to="/">Перейти на главную?</router-link>
     </div>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
   &__content {
     margin-bottom: 100px;
     text-align: center;
@@ -32,10 +31,6 @@ export default {
   p {
     margin-bottom: 30px;
     font-size: 1.8rem;
-  }
-  .link {
-    -webkit-text-decoration-line: underline;
-    text-decoration-line: underline;
   }
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="shopping-cart"></div>
+  <div class="product-vue"></div>
 </template>
 
 <script>
 export default {
-  name: "ShoppingСart",
+  name: "ProductVue",
   data() {
     return {};
   },
