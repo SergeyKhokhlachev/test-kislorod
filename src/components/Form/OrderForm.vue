@@ -301,10 +301,10 @@ export default {
   &__fieldset {
     margin-bottom: 14px;
     @include respond(screen-md) {
-      margin-bottom: 26px;
+      margin-bottom: 30px;
     }
     @include respond(screen-lg) {
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
   }
   &__box {
@@ -373,6 +373,9 @@ export default {
     @include respond(screen-lg) {
       margin-bottom: 24px;
     }
+  }
+  .local-pickup {
+    margin-bottom: 26px;
   }
 }
 

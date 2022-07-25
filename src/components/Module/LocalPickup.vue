@@ -27,14 +27,14 @@ export default {
 
 <style lang="scss" scoped>
 .local-pickup {
-  padding: 20px 24px 26px;
+  padding: 20px 24px 16px;
   border: 1px solid #dde3e8;
   border-radius: 3px;
   @include respond(screen-md) {
     padding: 24px 24px 26px;
   }
   &__address {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     font-size: 14px;
     font-weight: 500;
     @include respond(screen-md) {
@@ -43,7 +43,7 @@ export default {
     }
   }
   &__date {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     color: $text-color--muted;
     font-size: 11px;
     @include respond(screen-md) {
@@ -52,7 +52,7 @@ export default {
     }
   }
   &__working {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     font-size: 11px;
     @include respond(screen-md) {
       margin-bottom: 22px;

@@ -103,15 +103,18 @@ export default {
     padding: 30px 50px 40px;
   }
   @include respond(screen-lg) {
+    margin-top: 4px;
     padding: 62px 48px 44px;
   }
   .sub-title {
-    margin-bottom: 24px;
+    font-size: 20px;
+    margin-bottom: 22px;
     @include respond(screen-md) {
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
     @include respond(screen-lg) {
       margin-bottom: 42px;
+      font-size: 24px;
     }
   }
   .product-vue {
@@ -134,12 +137,13 @@ export default {
       width: 100%;
       margin-top: 10px;
       @include respond(screen-md) {
-        width: auto;
+        flex-shrink: 0;
+        width: 148px;
         margin-top: 0;
         margin-left: 40px;
       }
       @include respond(screen-lg) {
-        width: auto;
+        width: 100px;
         margin-left: 20px;
       }
     }
@@ -151,14 +155,20 @@ export default {
     }
   }
   &__list {
-    padding: 18px 0 10px;
+    padding: 20px 0 10px;
+    @include respond(screen-md) {
+      padding: 20px 0 5px;
+    }
   }
   &__ell {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: $text-color--muted;
     font-size: 14px;
+    @include respond(screen-md) {
+      margin-bottom: 15px;
+    }
   }
   &__result {
     display: flex;

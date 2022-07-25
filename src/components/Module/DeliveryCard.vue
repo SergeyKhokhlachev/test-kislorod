@@ -29,7 +29,7 @@ export default {
 .delivery-card {
   display: flex;
   justify-content: space-between;
-  padding: 16px;
+  padding: 15px 16px 15px;
   border: 1px solid #dde3e8;
   border-radius: 3px;
   background-color: #ffffff;
@@ -39,7 +39,10 @@ export default {
     cursor: pointer;
   }
   @include respond(screen-md) {
-    padding: 18px 24px;
+    padding: 16px 24px;
+  }
+  @include respond(screen-lg) {
+    max-width: 460px;
   }
   &__box {
     &:last-child {

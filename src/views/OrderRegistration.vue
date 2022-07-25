@@ -104,13 +104,17 @@ export default {
 
 <style lang="scss" scoped>
 .page-box {
-  margin-bottom: 30px;
+  margin-bottom: 45px;
+  @include respond(screen-md) {
+    margin-bottom: 60px;
+  }
   @include respond(screen-lg) {
     display: grid;
     grid-auto-rows: 1fr;
     grid-template-columns: auto 430px;
     grid-template-rows: repeat(2, auto);
     gap: 0 30px;
+    margin-bottom: 40px;
   }
   @include respond(screen-xl) {
     grid-template-columns: auto 460px;
@@ -126,17 +130,22 @@ export default {
   &__flex {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    margin-bottom: 32px;
     @include respond(screen-md) {
-      margin-bottom: 38px;
+      justify-content: flex-start;
+      margin-bottom: 30px;
     }
     .sub-title {
       margin-bottom: 0;
-      margin-right: 46px;
+      margin-right: 40px;
+      @include respond(screen-lg) {
+        margin-right: 46px;
+      }
     }
     .link {
       svg {
-        margin-left: 12px;
+        margin-left: 8px;
         fill: $color-main;
         transform: rotateX(180deg);
       }
@@ -172,7 +181,7 @@ export default {
 }
 
 .fve-checkbox {
-  margin-bottom: 30px;
+  margin-bottom: 26px;
   @include respond(screen-md) {
     margin-bottom: 40px;
   }

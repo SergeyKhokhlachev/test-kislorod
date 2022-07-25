@@ -20,45 +20,47 @@ a {
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 25px;
   @include respond(screen-sm) {
     max-width: 540px;
   }
   @include respond(screen-md) {
     max-width: 720px;
+    padding: 0 15px;
   }
   @include respond(screen-lg) {
     max-width: 960px;
   }
   @include respond(screen-xl) {
-    max-width: 1140px;
+    max-width: 1178px;
   }
 }
 
 .page-title {
-  margin-bottom: 40px;
+  margin-bottom: 31px;
   font-size: 24px;
   font-weight: 300;
   text-align: center;
   @include respond(screen-md) {
-    margin-bottom: 85px;
+    margin-bottom: 78px;
     font-size: 36px;
     text-align: left;
   }
   @include respond(screen-lg) {
-    margin-bottom: 100px;
+    margin-bottom: 86px;
   }
 }
 
 .sub-title {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-size: 16px;
   font-weight: 300;
   @include respond(screen-md) {
-    margin-bottom: 38px;
+    margin-bottom: 30px;
     font-size: 20px;
   }
   @include respond(screen-lg) {
+    margin-bottom: 32px;
     font-size: 24px;
   }
 }

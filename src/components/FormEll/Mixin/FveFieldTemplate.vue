@@ -46,7 +46,7 @@ export default {};
     color: $color-error;
   }
   &__describe {
-    margin-top: 4px;
+    margin-top: 6px;
     font-size: 10px;
     color: $text-color--muted;
     @include respond(screen-md) {

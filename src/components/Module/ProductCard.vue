@@ -109,12 +109,15 @@ export default {
 .product-card {
   position: relative;
   display: flex;
-  padding: 10px 10px 34px;
+  padding: 8px 10px 17px;
   border: 1px solid #dde3e8;
   border-radius: 3px;
   @include respond(screen-md) {
     position: static;
-    padding: 21px 22px 23px;
+    padding: 15px 16px 16px;
+  }
+  @include respond(screen-lg) {
+    padding: 22px 22px 20px;
   }
   &__body {
     @include respond(screen-md) {
@@ -128,6 +131,11 @@ export default {
     height: 73px;
     margin-right: 12px;
     @include respond(screen-md) {
+      width: 78px;
+      height: 78px;
+      margin-right: 16px;
+    }
+    @include respond(screen-lg) {
       width: 92px;
       height: 92px;
       margin-right: 22px;
@@ -149,12 +157,15 @@ export default {
     display: inline-block;
     max-width: 250px;
     margin-top: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 13px;
     @include respond(screen-md) {
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       font-size: 16px;
+    }
+    @include respond(screen-lg) {
+      margin-bottom: 10px;
     }
   }
   &__control {
@@ -171,14 +182,15 @@ export default {
         margin-left: 40px;
       }
       @include respond(screen-md) {
-        margin-right: 60px;
+        margin-left: 45px;
+        margin-right: 55px;
       }
     }
   }
   &__remove {
     position: absolute;
-    top: 18px;
-    right: 18px;
+    top: 12px;
+    right: 12px;
     padding: 4px;
     border: none;
     background-color: inherit;
@@ -208,7 +220,7 @@ export default {
 }
 
 .product-info {
-  margin-bottom: 16px;
+  margin-bottom: 21px;
   @include respond(screen-md) {
     margin-bottom: 0;
   }
@@ -217,6 +229,7 @@ export default {
     color: $text-color--muted;
     font-size: 12px;
     @include respond(screen-md) {
+      margin-bottom: 4px;
       font-size: 13px;
     }
     span {
@@ -251,6 +264,7 @@ export default {
   border-radius: 3px;
   @include respond(screen-md) {
     width: auto;
+    margin-bottom: 14px;
   }
   &__btn {
     display: flex;
@@ -302,7 +316,7 @@ export default {
     top: 100%;
     display: inline-block;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 6px;
     color: $text-color--muted;
     font-size: 12px;
     text-align: center;

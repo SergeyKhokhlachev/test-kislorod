@@ -54,7 +54,7 @@ export default {
   }
   &__content {
     width: 100%;
-    padding: 6px 24px 6px 0;
+    padding: 2px 24px 6px 0;
     @include respond(screen-md) {
       display: flex;
       align-items: center;
@@ -65,7 +65,7 @@ export default {
     }
   }
   &__name {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: $text-color--muted;
     font-size: 13px;
     @include respond(screen-md) {
