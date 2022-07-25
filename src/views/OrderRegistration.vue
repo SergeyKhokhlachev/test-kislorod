@@ -6,21 +6,39 @@
         <order-form />
       </main>
       <div class="page-box__slot">
-        <h3 class="sub-title">Товары</h3>
-        <product-card
-          v-for="product in products"
-          v-bind="product"
-          @increase="productQuantity"
-          @reduce="productQuantity"
-          @remove="productRemove"
-          :key="product.id"
-        />
+        <div class="page-box__flex">
+          <h3 class="sub-title">Товары</h3>
+          <span
+            :class="['link', { active: productsShown }]"
+            @click="productsShown = !productsShown"
+          >
+            {{ shownLink }}
+            <img svg-inline src="@img/icons/angle.svg" alt="icon" />
+          </span>
+        </div>
+        <transition name="fade">
+          <div v-show="productsShown" class="product-tabs">
+            <product-card
+              v-for="product in products"
+              v-bind="product"
+              @increase="productQuantity"
+              @reduce="productQuantity"
+              @remove="productRemove"
+              :key="product.id"
+            />
+          </div>
+        </transition>
       </div>
       <aside class="page-box__assaide">
         <shopping-cart />
       </aside>
     </div>
-    <button type="button" class="btn btn--prime btn--lg">Оформить заказ</button>
+    <fve-checkbox v-model="checkbox">
+      Я согласен на обработку <a href="/" class="link">персональных данных</a>
+    </fve-checkbox>
+    <button type="button" class="btn btn--prime btn--lg" :disabled="!checkbox">
+      Оформить заказ
+    </button>
   </div>
 </template>
 
@@ -28,6 +46,7 @@
 import OrderForm from "@components/Form/OrderForm";
 import ShoppingCart from "@components/Module/ShoppingCart";
 import ProductCard from "@components/Module/ProductCard";
+import FveCheckbox from "@components/FormEll/FveCheckbox";
 
 export default {
   name: "OrderRegistration",
@@ -35,9 +54,12 @@ export default {
     OrderForm,
     ShoppingCart,
     ProductCard,
+    FveCheckbox,
   },
   data() {
     return {
+      productsShown: true,
+      checkbox: true,
       products: [
         {
           id: 1,
@@ -62,6 +84,11 @@ export default {
       ],
     };
   },
+  computed: {
+    shownLink() {
+      return this.productsShown ? "Свернуть" : "Развернуть";
+    },
+  },
   methods: {
     productQuantity(id, num) {
       const product = this.products.find((item) => item.id === id);
@@ -77,13 +104,17 @@ export default {
 
 <style lang="scss" scoped>
 .page-box {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   @include respond(screen-lg) {
     display: grid;
     grid-auto-rows: 1fr;
-    grid-template-columns: auto 460px;
+    grid-template-columns: auto 430px;
     grid-template-rows: repeat(2, auto);
-    gap: 30px;
+    gap: 0 30px;
+  }
+  @include respond(screen-xl) {
+    grid-template-columns: auto 460px;
+    gap: 0 128px;
   }
   &__slot {
     @include respond(screen-lg) {
@@ -92,9 +123,69 @@ export default {
       max-width: 754px;
     }
   }
+  &__flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    @include respond(screen-md) {
+      margin-bottom: 38px;
+    }
+    .sub-title {
+      margin-bottom: 0;
+      margin-right: 46px;
+    }
+    .link {
+      svg {
+        margin-left: 12px;
+        fill: $color-main;
+        transform: rotateX(180deg);
+      }
+      &.active {
+        svg {
+          transform: rotateX(0);
+        }
+      }
+    }
+  }
 }
 
+.product-tabs {
+  margin-bottom: 60px;
+  @include respond(screen-lg) {
+    margin-bottom: 0;
+  }
+}
 .product-card {
-  margin-top: -1px;
+  margin-bottom: 14px;
+  @include respond(screen-md) {
+    margin-top: -1px;
+    margin-bottom: 0;
+  }
+}
+
+.btn {
+  width: 100%;
+  @include respond(screen-lg) {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+.fve-checkbox {
+  margin-bottom: 30px;
+  @include respond(screen-md) {
+    margin-bottom: 40px;
+  }
+  @include respond(screen-lg) {
+    margin-bottom: 80px;
+  }
+}
+
+.fade-enter-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

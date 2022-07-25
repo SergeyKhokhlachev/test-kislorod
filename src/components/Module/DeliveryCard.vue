@@ -29,22 +29,36 @@ export default {
 .delivery-card {
   display: flex;
   justify-content: space-between;
-  padding: 18px 24px;
+  padding: 16px;
   border: 1px solid #dde3e8;
   border-radius: 3px;
   background-color: #ffffff;
   transition: all 0.2s ease-in-out;
-  cursor: pointer;
   @include hover-supported() {
     background-color: $color-disabled;
+    cursor: pointer;
+  }
+  @include respond(screen-md) {
+    padding: 18px 24px;
+  }
+  &__box {
+    &:last-child {
+      text-align: right;
+    }
   }
   &__main {
-    mix-blend-mode: 8px;
-    font-size: 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    @include respond(screen-md) {
+      font-size: 16px;
+    }
   }
   &__sub {
     color: $text-color--muted;
-    font-size: 13px;
+    font-size: 11px;
+    @include respond(screen-md) {
+      font-size: 13px;
+    }
   }
   &.active {
     border-color: $color-main;

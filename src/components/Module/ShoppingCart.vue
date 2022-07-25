@@ -2,15 +2,18 @@
   <div class="shopping-cart">
     <h3 class="sub-title">Ваша корзина</h3>
     <div class="shopping-cart__promo">
+      <fve-field-text placeholder="Введите промо-код" v-model="code" />
       <button type="button" class="btn btn--outline btn--sm">Применить</button>
     </div>
     <div class="shopping-cart__hr"></div>
     <div class="shopping-cart__scroll">
-      <product-vue
-        v-for="product in products"
-        v-bind="product"
-        :key="product.id"
-      />
+      <perfect-scrollbar>
+        <product-vue
+          v-for="product in products"
+          v-bind="product"
+          :key="product.id"
+        />
+      </perfect-scrollbar>
     </div>
     <div class="shopping-cart__hr"></div>
     <ul class="shopping-cart__list">
@@ -37,15 +40,18 @@
 
 <script>
 import ProductVue from "@components/Module/ProductVue";
+import FveFieldText from "@components/FormEll/FveFieldText";
 
 export default {
   name: "ShoppingCart",
   components: {
     ProductVue,
+    FveFieldText,
   },
   props: {},
   data() {
     return {
+      code: "",
       products: [
         {
           id: 1,
@@ -59,6 +65,30 @@ export default {
           name: "Часы CASIO W-800,  водонепроницаемые",
           price: 3600,
         },
+        {
+          id: 3,
+          image: require("@img/temp/product-1.png"),
+          name: "Рюкзак Xiaomi Blade, серый",
+          price: 1450,
+        },
+        {
+          id: 4,
+          image: require("@img/temp/product-3.png"),
+          name: "Часы CASIO W-800,  водонепроницаемые",
+          price: 3600,
+        },
+        {
+          id: 5,
+          image: require("@img/temp/product-1.png"),
+          name: "Рюкзак Xiaomi Blade, серый",
+          price: 1450,
+        },
+        {
+          id: 6,
+          image: require("@img/temp/product-3.png"),
+          name: "Часы CASIO W-800,  водонепроницаемые",
+          price: 3600,
+        },
       ],
     };
   },
@@ -67,10 +97,22 @@ export default {
 
 <style lang="scss" scoped>
 .shopping-cart {
-  padding: 62px 48px 44px;
+  padding: 24px 24px 32px;
   background-color: #f8fafb;
+  @include respond(screen-md) {
+    padding: 30px 50px 40px;
+  }
+  @include respond(screen-lg) {
+    padding: 62px 48px 44px;
+  }
   .sub-title {
-    margin-bottom: 42px;
+    margin-bottom: 24px;
+    @include respond(screen-md) {
+      margin-bottom: 30px;
+    }
+    @include respond(screen-lg) {
+      margin-bottom: 42px;
+    }
   }
   .product-vue {
     margin-bottom: 20px;
@@ -80,11 +122,33 @@ export default {
     background-color: #e4eaee;
   }
   &__promo {
-    display: flex;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    @include respond(screen-md) {
+      display: flex;
+      margin-bottom: 30px;
+    }
+    @include respond(screen-lg) {
+      margin-bottom: 24px;
+    }
+    .btn {
+      width: 100%;
+      margin-top: 10px;
+      @include respond(screen-md) {
+        width: auto;
+        margin-top: 0;
+        margin-left: 40px;
+      }
+      @include respond(screen-lg) {
+        width: auto;
+        margin-left: 20px;
+      }
+    }
   }
   &__scroll {
-    margin: 34px 0;
+    margin: 20px 0;
+    @include respond(screen-lg) {
+      margin: 34px 0;
+    }
   }
   &__list {
     padding: 18px 0 10px;
@@ -99,9 +163,36 @@ export default {
   &__result {
     display: flex;
     justify-content: space-between;
-    padding-top: 24px;
+    padding-top: 18px;
     font-size: 16px;
     font-weight: 500;
+    @include respond(screen-md) {
+      padding-top: 20px;
+    }
+    @include respond(screen-lg) {
+      padding-top: 24px;
+    }
+  }
+}
+
+:deep(.fve-field) {
+  width: 100%;
+  input {
+    height: 36px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  .fve-field__placeholder {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 12px;
+  }
+}
+
+:deep(.ps) {
+  height: 262px;
+  @include respond(screen-lg) {
+    height: 304px;
   }
 }
 </style>

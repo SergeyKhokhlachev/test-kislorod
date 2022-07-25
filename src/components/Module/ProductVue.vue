@@ -33,10 +33,19 @@ export default {
 .product-vue {
   display: flex;
   &__previw {
-    width: 87px;
-    height: 87px;
-    margin-right: 28px;
+    width: 77px;
+    height: 77px;
+    margin-right: 22px;
     background-color: #ffffff;
+    @include respond(screen-md) {
+      width: 92px;
+      height: 92px;
+      margin-right: 28px;
+    }
+    @include respond(screen-lg) {
+      width: 87px;
+      height: 87px;
+    }
   }
   &__image {
     width: 100%;
@@ -44,18 +53,34 @@ export default {
     object-fit: contain;
   }
   &__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 6px 0;
+    width: 100%;
+    padding: 6px 24px 6px 0;
+    @include respond(screen-md) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @include respond(screen-lg) {
+      display: block;
+    }
   }
   &__name {
     margin-bottom: 10px;
     color: $text-color--muted;
-    font-size: 16px;
+    font-size: 13px;
+    @include respond(screen-md) {
+      margin-bottom: 0;
+      font-size: 16px;
+    }
+    @include respond(screen-lg) {
+      margin-bottom: 18px;
+    }
   }
   &__price {
-    font-size: 14px;
+    font-size: 13px;
+    @include respond(screen-md) {
+      wfont-size: 14px;
+    }
   }
 }
 </style>

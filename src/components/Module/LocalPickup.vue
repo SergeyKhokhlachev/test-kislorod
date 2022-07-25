@@ -27,32 +27,55 @@ export default {
 
 <style lang="scss" scoped>
 .local-pickup {
-  padding: 24px 24px 26px;
+  padding: 20px 24px 26px;
   border: 1px solid #dde3e8;
   border-radius: 3px;
+  @include respond(screen-md) {
+    padding: 24px 24px 26px;
+  }
   &__address {
-    margin-bottom: 4px;
-    font-size: 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
     font-weight: 500;
+    @include respond(screen-md) {
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
   }
   &__date {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     color: $text-color--muted;
-    font-size: 13px;
+    font-size: 11px;
+    @include respond(screen-md) {
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
   }
   &__working {
-    margin-bottom: 22px;
-    font-size: 12px;
+    margin-bottom: 16px;
+    font-size: 11px;
+    @include respond(screen-md) {
+      margin-bottom: 22px;
+      font-size: 12px;
+    }
     span {
       color: $text-color--muted;
     }
   }
   &__btn {
-    display: flex;
+    @include respond(screen-md) {
+      display: flex;
+    }
     .btn {
-      margin-right: 24px;
-      &:last-child {
-        margin-right: 0;
+      width: 100%;
+      margin-bottom: 10px;
+      @include respond(screen-md) {
+        width: auto;
+        margin-bottom: 0;
+        margin-right: 24px;
+        &:last-child {
+          margin-right: 0;
+        }
       }
     }
   }

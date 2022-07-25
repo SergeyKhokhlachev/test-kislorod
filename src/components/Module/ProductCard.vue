@@ -3,49 +3,51 @@
     <div class="product-card__previw">
       <img :src="image" class="product-card__img" alt="photo" />
     </div>
-    <div class="product-card__content">
-      <router-link to="/" class="product-card__name">
-        {{ name }}
-      </router-link>
-      <ul class="product-info">
-        <li class="product-info__ell">
-          Артикул: <span>{{ article }}</span>
-        </li>
-        <li class="product-info__ell">
-          Цвет: <span>{{ color }}</span>
-        </li>
-      </ul>
-    </div>
-    <div class="product-card__control">
-      <div class="product-price">
-        <span class="product-price__main">{{ priceNewFormat }}</span>
-        <span class="product-price__sub">{{ priceOldFormat }}</span>
+    <div class="product-card__body">
+      <div class="product-card__content">
+        <router-link to="/" class="product-card__name">
+          {{ name }}
+        </router-link>
+        <ul class="product-info">
+          <li class="product-info__ell">
+            Артикул: <span>{{ article }}</span>
+          </li>
+          <li class="product-info__ell">
+            Цвет: <span>{{ color }}</span>
+          </li>
+        </ul>
       </div>
-      <div class="product-count">
-        <button
-          type="button"
-          class="product-count__btn"
-          @click="reduce"
-          :disabled="single"
-        >
-          <img svg-inline src="@img/icons/minus.svg" alt="-" />
-        </button>
-        <input
-          type="text"
-          class="product-count__field"
-          :value="quantity"
-          readonly
-        />
-        <span v-if="!single" class="product-count__single">
-          {{ priceSingleFormat }}
-        </span>
-        <button type="button" class="product-count__btn" @click="increase">
-          <img svg-inline src="@img/icons/plus.svg" alt="+" />
+      <div class="product-card__control">
+        <div class="product-price">
+          <span class="product-price__main">{{ priceNewFormat }}</span>
+          <span class="product-price__sub">{{ priceOldFormat }}</span>
+        </div>
+        <div class="product-count">
+          <button
+            type="button"
+            class="product-count__btn"
+            @click="reduce"
+            :disabled="single"
+          >
+            <img svg-inline src="@img/icons/minus.svg" alt="-" />
+          </button>
+          <input
+            type="text"
+            class="product-count__field"
+            :value="quantity"
+            readonly
+          />
+          <span v-if="!single" class="product-count__single">
+            {{ priceSingleFormat }}
+          </span>
+          <button type="button" class="product-count__btn" @click="increase">
+            <img svg-inline src="@img/icons/plus.svg" alt="+" />
+          </button>
+        </div>
+        <button type="button" class="product-card__remove" @click="remove">
+          <img svg-inline src="@img/icons/close.svg" alt="x" />
         </button>
       </div>
-      <button type="button" class="product-card__remove" @click="remove">
-        <img svg-inline src="@img/icons/close.svg" alt="x" />
-      </button>
     </div>
   </div>
 </template>
@@ -105,15 +107,31 @@ export default {
 
 <style lang="scss" scoped>
 .product-card {
+  position: relative;
   display: flex;
-  padding: 21px 22px 23px;
+  padding: 10px 10px 34px;
   border: 1px solid #dde3e8;
   border-radius: 3px;
+  @include respond(screen-md) {
+    position: static;
+    padding: 21px 22px 23px;
+  }
+  &__body {
+    @include respond(screen-md) {
+      display: flex;
+      width: 100%;
+    }
+  }
   &__previw {
     flex-shrink: 0;
-    width: 92px;
-    height: 92px;
-    margin-right: 22px;
+    width: 73px;
+    height: 73px;
+    margin-right: 12px;
+    @include respond(screen-md) {
+      width: 92px;
+      height: 92px;
+      margin-right: 22px;
+    }
   }
   &__img {
     width: 100%;
@@ -122,28 +140,51 @@ export default {
   }
   &__content {
     width: 100%;
+    padding-right: 50px;
+    @include respond(screen-md) {
+      padding-right: 0;
+    }
   }
   &__name {
     display: inline-block;
     max-width: 250px;
-    margin-bottom: 10px;
-    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    @include respond(screen-md) {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
   }
   &__control {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-shrink: 0;
+    @include respond(screen-sm) {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    @include respond(screen-md) {
+      justify-content: flex-end;
+    }
     .product-count {
-      margin-right: 60px;
-      margin-left: 40px;
+      @include respond(screen-sm) {
+        margin-left: 40px;
+      }
+      @include respond(screen-md) {
+        margin-right: 60px;
+      }
     }
   }
   &__remove {
+    position: absolute;
+    top: 18px;
+    right: 18px;
     padding: 4px;
     border: none;
     background-color: inherit;
-    cursor: pointer;
+    @include respond(screen-md) {
+      position: static;
+    }
     &:active,
     &:focus {
       outline: none;
@@ -153,6 +194,7 @@ export default {
       transition: fill 0.2s ease-in-out;
     }
     @include hover-supported() {
+      cursor: pointer;
       svg {
         fill: $color-error;
       }
@@ -166,10 +208,17 @@ export default {
 }
 
 .product-info {
+  margin-bottom: 16px;
+  @include respond(screen-md) {
+    margin-bottom: 0;
+  }
   &__ell {
-    mix-blend-mode: 6px;
+    margin-bottom: 6px;
     color: $text-color--muted;
-    font-size: 13px;
+    font-size: 12px;
+    @include respond(screen-md) {
+      font-size: 13px;
+    }
     span {
       color: $text-color;
     }
@@ -179,6 +228,10 @@ export default {
 .product-price {
   display: flex;
   flex-direction: column;
+  margin-bottom: 16px;
+  @include respond(screen-sm) {
+    margin-bottom: 0;
+  }
   &__main {
     font-size: 16px;
   }
@@ -192,9 +245,13 @@ export default {
 .product-count {
   position: relative;
   display: flex;
+  width: 110px;
   margin-bottom: 16px;
   border: 1px solid #dde3e8;
   border-radius: 3px;
+  @include respond(screen-md) {
+    width: auto;
+  }
   &__btn {
     display: flex;
     align-items: center;
@@ -203,7 +260,6 @@ export default {
     height: 35px;
     background-color: #f8fafb;
     border: none;
-    cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     svg {
       transition: opacity 0.2s ease-in-out;
@@ -214,6 +270,7 @@ export default {
     }
     @include hover-supported() {
       background-color: #ededed;
+      cursor: pointer;
     }
     &:active {
       background-color: #d6d6d6;
