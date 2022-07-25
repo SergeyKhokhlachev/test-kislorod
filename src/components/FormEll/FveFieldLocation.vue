@@ -76,7 +76,7 @@ export default {
       this.isShown = true;
     },
     onBlur() {
-      setTimeout(() => (this.isShown = false), 300);
+      setTimeout(() => (this.isShown = false), 150);
     },
     request(query) {
       const url =
