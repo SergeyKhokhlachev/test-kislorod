@@ -3,9 +3,10 @@
     <fieldset class="order-form__fieldset">
       <h3 class="sub-title">Город получения</h3>
       <fve-field-location
+        :ref="form.locality.ref"
         placeholder="Населенный пункт"
         required
-        v-model="form.locality"
+        v-model="form.locality.value"
       />
     </fieldset>
     <fieldset class="order-form__fieldset">
@@ -16,25 +17,28 @@
       <transition name="fade">
         <div v-show="!isLegal" class="order-form__tab">
           <fve-field-text
+            :ref="form.individual.name.ref"
             placeholder="Имя и Фамилия по паспорту"
             describe="Полные фамилия, имя и отчество могут потребоваться при получении заказа"
             required
-            v-model="form.individual.name"
+            v-model="form.individual.name.value"
           />
           <div class="order-form__row">
             <div class="order-form__col order-form__col--half">
               <fve-field-email
+                :ref="form.individual.email.ref"
                 placeholder="Электронная почта"
                 required
-                v-model="form.individual.email"
+                v-model="form.individual.email.value"
               />
             </div>
             <div class="order-form__col order-form__col--half">
               <fve-field-phone
+                :ref="form.individual.phone.ref"
                 placeholder="Номер телефона"
                 describe="Для согласования времени доставки"
                 required
-                v-model="form.individual.phone"
+                v-model="form.individual.phone.value"
               />
             </div>
           </div>
@@ -45,49 +49,63 @@
           <div class="order-form__row">
             <div class="order-form__col order-form__col--half">
               <fve-field-number
+                :ref="form.legal.inn.ref"
                 placeholder="ИНН"
                 required
-                v-model="form.legal.inn"
+                v-model="form.legal.inn.value"
               />
             </div>
           </div>
           <fve-field-text
+            :ref="form.legal.name.ref"
             placeholder="Название организации"
             required
-            v-model="form.legal.name"
+            v-model="form.legal.name.value"
           />
           <fve-field-text
+            :ref="form.legal.contact.ref"
             placeholder="Контактное лицо"
             required
-            v-model="form.legal.contact"
+            v-model="form.legal.contact.value"
           />
           <div class="order-form__row">
             <div class="order-form__col order-form__col--half">
               <fve-field-email
+                :ref="form.legal.email.ref"
                 placeholder="Электронная почта"
                 required
-                v-model="form.legal.email"
+                v-model="form.legal.email.value"
               />
             </div>
             <div class="order-form__col order-form__col--half">
               <fve-field-phone
+                :ref="form.legal.phone.ref"
                 placeholder="Номер телефона"
                 required
-                v-model="form.legal.phone"
+                v-model="form.legal.phone.value"
               />
             </div>
           </div>
           <fve-field-text
+            :ref="form.legal.address.ref"
             placeholder="Юридический адрес"
             required
-            v-model="form.legal.address"
+            v-model="form.legal.address.value"
           />
           <div class="order-form__row">
             <div class="order-form__col order-form__col--half">
-              <fve-field-number placeholder="КПП" v-model="form.legal.kpp" />
+              <fve-field-number
+                :ref="form.legal.kpp.ref"
+                placeholder="КПП"
+                v-model="form.legal.kpp.value"
+              />
             </div>
             <div class="order-form__col order-form__col--half">
-              <fve-field-number placeholder="ОГРН" v-model="form.legal.ogrn" />
+              <fve-field-number
+                :ref="form.legal.ogrn.ref"
+                placeholder="ОГРН"
+                v-model="form.legal.ogrn.value"
+              />
             </div>
           </div>
         </div>
@@ -108,30 +126,34 @@
       <transition name="fade">
         <div v-show="delivery === 'postal'" class="order-form__tab">
           <fve-field-text
+            :ref="form.postal.street.ref"
             placeholder="Улица"
             required
-            v-model="form.postal.street"
+            v-model="form.postal.street.value"
           />
           <div class="order-form__row">
             <div class="order-form__col order-form__col--third">
               <fve-field-text
+                :ref="form.postal.house.ref"
                 placeholder="Дом"
                 required
-                v-model="form.postal.house"
+                v-model="form.postal.house.value"
               />
             </div>
             <div class="order-form__col order-form__col--third">
               <fve-field-text
+                :ref="form.postal.flat.ref"
                 placeholder="Квартира"
                 required
-                v-model="form.postal.flat"
+                v-model="form.postal.flat.value"
               />
             </div>
             <div class="order-form__col order-form__col--third">
               <fve-field-number
+                :ref="form.postal.index.ref"
                 placeholder="Индекс"
                 required
-                v-model.number="form.postal.index"
+                v-model.number="form.postal.index.value"
               />
             </div>
           </div>
@@ -140,23 +162,26 @@
       <transition name="fade">
         <div v-show="delivery === 'courier'" class="order-form__tab">
           <fve-field-text
+            :ref="form.courier.street.ref"
             placeholder="Улица"
             required
-            v-model="form.courier.street"
+            v-model="form.courier.street.value"
           />
           <div class="order-form__row">
             <div class="order-form__col order-form__col--third">
               <fve-field-text
+                :ref="form.courier.house.ref"
                 placeholder="Дом"
                 required
-                v-model="form.courier.house"
+                v-model="form.courier.house.value"
               />
             </div>
             <div class="order-form__col order-form__col--third">
               <fve-field-text
+                :ref="form.courier.flat.ref"
                 placeholder="Квартира"
                 required
-                v-model="form.courier.flat"
+                v-model="form.courier.flat.value"
               />
             </div>
           </div>
@@ -170,22 +195,22 @@
     </fieldset>
     <fieldset class="order-form__fieldset">
       <h3 class="sub-title">Способ оплаты</h3>
-      <fve-radio value="online" v-model="form.payment">
+      <fve-radio value="online" v-model="form.payment.value">
         <div class="radio-label">
           Банковской картой онлайн
           <span class="radio-label__sub">Скидка 3%</span>
         </div>
       </fve-radio>
-      <fve-radio value="cash" v-model="form.payment">
+      <fve-radio value="cash" v-model="form.payment.value">
         <div class="radio-label">Наличными при получении</div>
       </fve-radio>
-      <fve-radio value="card" v-model="form.payment">
+      <fve-radio value="card" v-model="form.payment.value">
         <div class="radio-label">Банковской картой при получении</div>
       </fve-radio>
     </fieldset>
     <fieldset class="order-form__fieldset">
       <h3 class="sub-title">Комментарий к заказу</h3>
-      <fve-field-area v-model="form.comment" />
+      <fve-field-area :ref="form.comment.ref" v-model="form.comment.value" />
     </fieldset>
   </form>
 </template>
@@ -220,34 +245,97 @@ export default {
       isLegal: false,
       delivery: "postal",
       form: {
-        locality: "",
-        comment: "",
-        payment: "online",
+        locality: {
+          ref: "locality",
+          value: "",
+        },
+        comment: {
+          ref: "comment",
+          value: "",
+        },
+        payment: {
+          ref: null,
+          value: "",
+        },
         individual: {
-          name: "",
-          email: "",
-          phone: "",
+          name: {
+            ref: "nameIndividual",
+            value: "",
+          },
+          email: {
+            ref: "emailIndividual",
+            value: "",
+          },
+          phone: {
+            ref: "phoneIndividual",
+            value: "",
+          },
         },
         legal: {
-          inn: "",
-          name: "",
-          contact: "",
-          email: "",
-          phone: "",
-          address: "",
-          kpp: "",
-          ogrn: "",
+          inn: {
+            ref: "innLegal",
+            value: "",
+          },
+          name: {
+            ref: "nameLegal",
+            value: "",
+          },
+          contact: {
+            ref: "contactLegal",
+            value: "",
+          },
+          email: {
+            ref: "emailLegal",
+            value: "",
+          },
+          phone: {
+            ref: "phoneLegal",
+            value: "",
+          },
+          address: {
+            ref: "addressLegal",
+            value: "",
+          },
+          kpp: {
+            ref: "kppLegal",
+            value: "",
+          },
+          ogrn: {
+            ref: "ogrnLegal",
+            value: "",
+          },
         },
         postal: {
-          street: "",
-          house: "",
-          flat: "",
-          index: "",
+          street: {
+            ref: "streetPostal",
+            value: "",
+          },
+          house: {
+            ref: "housePostal",
+            value: "",
+          },
+          flat: {
+            ref: "flatPostal",
+            value: "",
+          },
+          index: {
+            ref: "indexPostal",
+            value: "",
+          },
         },
         courier: {
-          street: "",
-          house: "",
-          flat: "",
+          street: {
+            ref: "streetCourier",
+            value: "",
+          },
+          house: {
+            ref: "houseCourier",
+            value: "",
+          },
+          flat: {
+            ref: "flatCourier",
+            value: "",
+          },
         },
       },
       deliveryList: [
@@ -291,6 +379,36 @@ export default {
     },
     personTitle() {
       return this.isLegal ? "Физическое лицо" : "Юридическое лицо";
+    },
+  },
+  methods: {
+    formElementPush(elementArr, elementCol) {
+      for (const key in elementCol) {
+        const element = this.$refs[elementCol[key].ref];
+        elementArr.push(element);
+      }
+    },
+    formElementGet() {
+      const formElementArr = [this.$refs["locality"]];
+      if (this.isLegal) {
+        this.formElementPush(formElementArr, this.form.legal);
+      } else {
+        this.formElementPush(formElementArr, this.form.individual);
+      }
+
+      if (this.delivery === "postal") {
+        this.formElementPush(formElementArr, this.form.postal);
+      } else if (this.delivery === "courier") {
+        this.formElementPush(formElementArr, this.form.courier);
+      }
+
+      return formElementArr;
+    },
+    submit() {
+      const formElementArr = this.formElementGet();
+      formElementArr.forEach((element) => {
+        element.validate(element.modelValue);
+      });
     },
   },
 };
