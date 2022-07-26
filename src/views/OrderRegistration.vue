@@ -3,7 +3,7 @@
     <h1 class="page-title">Оформление заказа</h1>
     <div class="page-box">
       <main class="page-box__main">
-        <order-form />
+        <order-form ref="form" />
       </main>
       <div class="page-box__slot">
         <div class="page-box__flex">
@@ -33,10 +33,16 @@
         <shopping-cart />
       </aside>
     </div>
-    <fve-checkbox v-model="checkbox">
-      Я согласен на обработку <a href="/" class="link">персональных данных</a>
+    <fve-checkbox id="checkbox" v-model="checkbox">
+      <label for="checkbox" class="ch-label">Я согласен на обработку </label>
+      <a href="/" class="link">персональных данных</a>
     </fve-checkbox>
-    <button type="button" class="btn btn--prime btn--lg" :disabled="!checkbox">
+    <button
+      type="button"
+      class="btn btn--prime btn--lg"
+      :disabled="!checkbox"
+      @click.prevent="submit"
+    >
       Оформить заказ
     </button>
   </div>
@@ -64,7 +70,16 @@ export default {
         {
           id: 1,
           name: "Рюкзак Xiaomi Blade, серый",
-          image: require("@img/temp/product-1.png"),
+          image: {
+            base: [
+              require("@img/temp/product-1.png"),
+              require("@img/temp/product-1@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-1.webp"),
+              require("@img/temp/product-1@2x.webp"),
+            ],
+          },
           color: "Серый",
           article: "123456789",
           quantity: 2,
@@ -74,7 +89,16 @@ export default {
         {
           id: 2,
           name: "Ботинки для беговых лыж Marax M-350 Active серебро",
-          image: require("@img/temp/product-2.png"),
+          image: {
+            base: [
+              require("@img/temp/product-2.png"),
+              require("@img/temp/product-2@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-2.webp"),
+              require("@img/temp/product-2@2x.webp"),
+            ],
+          },
           color: "Серебро",
           article: "123456789",
           quantity: 1,
@@ -90,6 +114,9 @@ export default {
     },
   },
   methods: {
+    submit() {
+      this.$refs.form.submit();
+    },
     productQuantity(id, num) {
       const product = this.products.find((item) => item.id === id);
       product.quantity = num;
@@ -187,6 +214,15 @@ export default {
   }
   @include respond(screen-lg) {
     margin-bottom: 80px;
+  }
+  .link {
+    font-size: 13px;
+  }
+}
+
+.ch-label {
+  @include hover-supported() {
+    cursor: pointer;
   }
 }
 

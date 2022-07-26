@@ -55,37 +55,91 @@ export default {
       products: [
         {
           id: 1,
-          image: require("@img/temp/product-1.png"),
+          image: {
+            base: [
+              require("@img/temp/product-1.png"),
+              require("@img/temp/product-1@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-1.webp"),
+              require("@img/temp/product-1@2x.webp"),
+            ],
+          },
           name: "Рюкзак Xiaomi Blade, серый",
           price: 1450,
         },
         {
           id: 2,
-          image: require("@img/temp/product-3.png"),
+          image: {
+            base: [
+              require("@img/temp/product-3.png"),
+              require("@img/temp/product-3@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-3.webp"),
+              require("@img/temp/product-3@2x.webp"),
+            ],
+          },
           name: "Часы CASIO W-800,  водонепроницаемые",
           price: 3600,
         },
         {
           id: 3,
-          image: require("@img/temp/product-1.png"),
+          image: {
+            base: [
+              require("@img/temp/product-1.png"),
+              require("@img/temp/product-1@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-1.webp"),
+              require("@img/temp/product-1@2x.webp"),
+            ],
+          },
           name: "Рюкзак Xiaomi Blade, серый",
           price: 1450,
         },
         {
           id: 4,
-          image: require("@img/temp/product-3.png"),
+          image: {
+            base: [
+              require("@img/temp/product-3.png"),
+              require("@img/temp/product-3@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-3.webp"),
+              require("@img/temp/product-3@2x.webp"),
+            ],
+          },
           name: "Часы CASIO W-800,  водонепроницаемые",
           price: 3600,
         },
         {
           id: 5,
-          image: require("@img/temp/product-1.png"),
+          image: {
+            base: [
+              require("@img/temp/product-1.png"),
+              require("@img/temp/product-1@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-1.webp"),
+              require("@img/temp/product-1@2x.webp"),
+            ],
+          },
           name: "Рюкзак Xiaomi Blade, серый",
           price: 1450,
         },
         {
           id: 6,
-          image: require("@img/temp/product-3.png"),
+          image: {
+            base: [
+              require("@img/temp/product-3.png"),
+              require("@img/temp/product-3@2x.png"),
+            ],
+            webp: [
+              require("@img/temp/product-3.webp"),
+              require("@img/temp/product-3@2x.webp"),
+            ],
+          },
           name: "Часы CASIO W-800,  водонепроницаемые",
           price: 3600,
         },

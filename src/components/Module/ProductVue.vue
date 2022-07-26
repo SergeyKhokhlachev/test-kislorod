@@ -1,7 +1,18 @@
 <template>
   <div class="product-vue">
     <div class="product-vue__previw">
-      <img :src="image" class="product-vue__img" alt="photo" />
+      <picture>
+        <source
+          type="image/webp"
+          :srcset="`${image.webp[0]} 1x, ${image.webp[1]} 2x`"
+        />
+        <img
+          alt="photo"
+          class="product-vue__img"
+          :src="image.base[0]"
+          :srcset="`${image.base[0]} 1x, ${image.base[1]} 2x`"
+        />
+      </picture>
     </div>
     <div class="product-vue__content">
       <h4 class="product-vue__name">{{ name }}</h4>
@@ -16,7 +27,7 @@ export default {
   props: {
     id: [String, Number],
     name: String,
-    image: String,
+    image: Object,
     price: Number,
   },
   computed: {
@@ -33,6 +44,7 @@ export default {
 .product-vue {
   display: flex;
   &__previw {
+    flex-shrink: 0;
     width: 77px;
     height: 77px;
     margin-right: 22px;
@@ -47,7 +59,7 @@ export default {
       height: 87px;
     }
   }
-  &__image {
+  &__img {
     width: 100%;
     height: 100%;
     object-fit: contain;

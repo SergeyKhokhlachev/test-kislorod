@@ -4,6 +4,7 @@
       <input
         v-show="false"
         type="checkbox"
+        :id="id"
         :name="name"
         :checked="modelValue"
         :required="required"
@@ -34,6 +35,7 @@
 export default {
   name: "FveCheckbox",
   props: {
+    id: { type: [String, Number], default: "" },
     name: { type: String, default: "" },
     modelValue: { type: Boolean, default: false },
     readonly: { type: Boolean, default: false },
@@ -58,7 +60,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -2px;
+    margin-top: -4px;
     width: 24px;
     height: 24px;
     border: 1px solid $color-main;

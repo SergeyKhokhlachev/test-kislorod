@@ -1,7 +1,18 @@
 <template>
   <div class="product-card">
     <div class="product-card__previw">
-      <img :src="image" class="product-card__img" alt="photo" />
+      <picture>
+        <source
+          type="image/webp"
+          :srcset="`${image.webp[0]} 1x, ${image.webp[1]} 2x`"
+        />
+        <img
+          alt="photo"
+          class="product-card__img"
+          :src="image.base[0]"
+          :srcset="`${image.base[0]} 1x, ${image.base[1]} 2x`"
+        />
+      </picture>
     </div>
     <div class="product-card__body">
       <div class="product-card__content">
@@ -58,7 +69,7 @@ export default {
   props: {
     id: [String, Number],
     name: String,
-    image: String,
+    image: Object,
     color: String,
     article: String,
     quantity: {

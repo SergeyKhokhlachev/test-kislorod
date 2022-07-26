@@ -42,6 +42,7 @@ export default {
 <style lang="scss" scoped>
 .fve-radio {
   display: flex;
+  transition: color 0.2s ease-in-out;
   @include hover-supported() {
     cursor: pointer;
   }
@@ -70,6 +71,9 @@ export default {
     &:before {
       opacity: 1;
     }
+  }
+  @include hover-supported() {
+    color: $color-main--active;
   }
 }
 </style>

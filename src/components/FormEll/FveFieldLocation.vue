@@ -122,9 +122,8 @@ export default {
     visibility: visible;
   }
   &__item {
-    margin-bottom: 4px;
+    padding: 4px 0;
     color: $text-color--muted;
-    font-size: 15px;
     @include hover-supported() {
       color: $color-main;
       cursor: pointer;
@@ -132,7 +131,6 @@ export default {
   }
   &__empty {
     color: $text-color--muted;
-    font-size: 15px;
   }
 }
 
