@@ -255,7 +255,7 @@ export default {
         },
         payment: {
           ref: null,
-          value: "",
+          value: "online",
         },
         individual: {
           name: {
