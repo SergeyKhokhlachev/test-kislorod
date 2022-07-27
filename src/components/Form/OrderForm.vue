@@ -133,7 +133,7 @@
           />
           <div class="order-form__row">
             <div class="order-form__col order-form__col--third">
-              <fve-field-text
+              <fve-field-short
                 :ref="form.postal.house.ref"
                 placeholder="Дом"
                 required
@@ -141,7 +141,7 @@
               />
             </div>
             <div class="order-form__col order-form__col--third">
-              <fve-field-text
+              <fve-field-short
                 :ref="form.postal.flat.ref"
                 placeholder="Квартира"
                 required
@@ -169,7 +169,7 @@
           />
           <div class="order-form__row">
             <div class="order-form__col order-form__col--third">
-              <fve-field-text
+              <fve-field-short
                 :ref="form.courier.house.ref"
                 placeholder="Дом"
                 required
@@ -177,7 +177,7 @@
               />
             </div>
             <div class="order-form__col order-form__col--third">
-              <fve-field-text
+              <fve-field-short
                 :ref="form.courier.flat.ref"
                 placeholder="Квартира"
                 required
@@ -221,6 +221,7 @@ import LocalPickup from "@components/Module/LocalPickup";
 
 import FveFieldLocation from "@components/FormEll/FveFieldLocation";
 import FveFieldText from "@components/FormEll/FveFieldText";
+import FveFieldShort from "@components/FormEll/FveFieldShort";
 import FveFieldEmail from "@components/FormEll/FveFieldEmail";
 import FveFieldPhone from "@components/FormEll/FveFieldPhone";
 import FveFieldNumber from "@components/FormEll/FveFieldNumber";
@@ -234,6 +235,7 @@ export default {
     LocalPickup,
     FveFieldLocation,
     FveFieldText,
+    FveFieldShort,
     FveFieldEmail,
     FveFieldPhone,
     FveFieldNumber,
